@@ -1,0 +1,24 @@
+services:
+    task.frontend.default:
+        class: Infrastructure\Delivery\Frontend\TodoBundle\Controller\DefaultController
+        autowire: true
+#        arguments: ['@task.create_task', '@task.list_task']
+
+    task.repository:
+        class: Infrastructure\Persistence\File\Task\TaskRepository
+#        autowire: true
+
+    task.create_task:
+        class: Application\Task\CreateTask
+        autowire: true
+#        arguments: ['@task.repository']
+
+    task.list_task:
+        class: Application\Task\ListTask
+        autowire: true
+#        arguments: ['@task.repository']
+
+    task.delete_task:
+        class: Application\Task\DeleteTask
+        autowire: true
+#        arguments: ['@task.repository']

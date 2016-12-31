@@ -1,0 +1,12 @@
+<ul>
+{% for task in tasks %}
+    <li>
+        {{ task.name }}
+        <a href="{{ path('delete', {id: task.id}) }}">X</a>
+    </li>
+{% endfor %}
+</ul>
+<hr/>
+{{ form_start(task_form) }}
+{{ form_widget(task_form.name) }}
+{{ form_end(task_form) }}
