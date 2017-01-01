@@ -9,16 +9,16 @@ services:
 #        factory: ['@doctrine.orm.default_entity_manager', getRepository]
 #        arguments: ['Domain\Task']
 
-#    task.doctrine_odm.repository:
-#        class: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
-#        factory: ['@doctrine.odm.mongodb.document_manager', getRepository]
-#        arguments: ['Domain\Task']
+    task.doctrine_odm.repository:
+        class: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
+        factory: ['@doctrine.odm.mongodb.document_manager', getRepository]
+        arguments: ['Domain\Task']
 
 #    task.file.repository:
 #        class: Infrastructure\Persistence\File\Task\TaskRepository
 
-    task.memory.repository:
-        class: Infrastructure\Persistence\Memory\Task\TaskRepository
+#    task.memory.repository:
+#        class: Infrastructure\Persistence\Memory\Task\TaskRepository
 
     task.create_task:
         class: Application\Task\CreateTask
