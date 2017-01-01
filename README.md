@@ -36,9 +36,6 @@ src
     │           │   └── views
     │           │       └── Default
     │           │           └── index.html.twig
-    │           ├── Tests
-    │           │   └── Controller
-    │           │       └── DefaultControllerTest.php
     │           └── TodoBundle.php
     └── Persistence
         ├── DoctrineODM
@@ -49,9 +46,11 @@ src
         │   └── Task
         │       ├── Task.orm.yml
         │       └── TaskRepository.php
-        └── File
+        ├── File
+        │   └── Task
+        │       ├── TaskRepository.php
+        │       └── tasks.txt
+        └── Memory
             └── Task
-                ├── TaskRepository.php
-                └── tasks.txt
-
+                └── TaskRepository.php
 ```
