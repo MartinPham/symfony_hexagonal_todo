@@ -4,9 +4,18 @@ services:
         autowire: true
 #        arguments: ['@task.create_task', '@task.list_task']
 
-    task.repository:
-        class: Infrastructure\Persistence\File\Task\TaskRepository
-#        autowire: true
+#    task.doctrine_orm.repository:
+#        class: Infrastructure\Persistence\DoctrineORM\Task\TaskRepository
+#        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+#        arguments: ['Domain\Task']
+
+    task.doctrine_odm.repository:
+        class: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
+        factory: ['@doctrine.odm.mongodb.document_manager', getRepository]
+        arguments: ['Domain\Task']
+
+#    task.file.repository:
+#        class: Infrastructure\Persistence\File\Task\TaskRepository
 
     task.create_task:
         class: Application\Task\CreateTask

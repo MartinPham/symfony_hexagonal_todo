@@ -58,8 +58,31 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+#        naming_strategy: doctrine.orm.naming_strategy.underscore
+#        auto_mapping: true
+        entity_managers:
+            default:
+                mappings:
+                    custom_mapping:
+                        type: yml
+                        prefix: Domain
+                        dir: "%kernel.root_dir%/../src/Infrastructure/Persistence/DoctrineORM/Task/"
+                        is_bundle: false
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: "mongodb://localhost:27017"
+            options: {}
+    default_database: sftodo
+    document_managers:
+        default:
+            mappings:
+                custom_mapping:
+                    type: yml
+                    prefix: Domain
+                    dir: "%kernel.root_dir%/../src/Infrastructure/Persistence/DoctrineODM/Task/"
+                    is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:

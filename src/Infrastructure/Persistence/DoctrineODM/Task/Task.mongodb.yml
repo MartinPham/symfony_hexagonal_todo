@@ -1,0 +1,12 @@
+Domain\Task:
+    type: document
+    collection: tasks
+    repositoryClass: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
+    fields:
+        id:
+            type: id
+            id:  true
+        name:
+            type: string
+
+
