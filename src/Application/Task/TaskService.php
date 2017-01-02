@@ -2,12 +2,12 @@
 
 
 namespace Application\Task;
-
 use Domain\Repository\TaskRepositoryInterface;
 use Domain\Task;
 
+
 /**
- * Class DeleteTask
+ * Class TaskService
  *
  * @category None
  * @package  Application\Task
@@ -15,7 +15,7 @@ use Domain\Task;
  * @license  None http://
  * @link     None
  */
-class DeleteTask
+class TaskService
 {
     /**
      * Task repository
@@ -34,6 +34,17 @@ class DeleteTask
         $this->repository = $repository;
     }
 
+
+    /**
+     * Get all tasks
+     *
+     * @return Task[]
+     */
+    public function getAllTasks() : array
+    {
+        return $this->repository->findAll();
+    }
+
     /**
      * Delete task
      *
@@ -46,5 +57,19 @@ class DeleteTask
         $task = $this->repository->find($id);
         $this->repository->remove($task);
     }
+
+    /**
+     * Create new task
+     *
+     * @param string $name Task name
+     *
+     * @return void
+     */
+    public function createTask(string $name)
+    {
+        $task = new Task($name);
+        $this->repository->save($task);
+    }
+
 
 }

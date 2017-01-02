@@ -9,10 +9,10 @@ services:
 #        factory: ['@doctrine.orm.default_entity_manager', getRepository]
 #        arguments: ['Domain\Task']
 
-    task.doctrine_odm.repository:
-        class: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
-        factory: ['@doctrine.odm.mongodb.document_manager', getRepository]
-        arguments: ['Domain\Task']
+#    task.doctrine_odm.repository:
+#        class: Infrastructure\Persistence\DoctrineODM\Task\TaskRepository
+#        factory: ['@doctrine.odm.mongodb.document_manager', getRepository]
+#        arguments: ['Domain\Task']
 
 #    task.file.repository:
 #        class: Infrastructure\Persistence\File\Task\TaskRepository
@@ -20,17 +20,18 @@ services:
 #    task.memory.repository:
 #        class: Infrastructure\Persistence\Memory\Task\TaskRepository
 
-    task.create_task:
-        class: Application\Task\CreateTask
+    task.repository:
+        class: Application\Repository\TaskRepository
         autowire: true
-#        arguments: ['@task.repository']
 
-    task.list_task:
-        class: Application\Task\ListTask
+#    adapter.file:
+#        class: Infrastructure\Persistence\Adapter\Memory\Adapter
+
+    adapter.doctrine_orm:
+        class: Infrastructure\Persistence\Adapter\DoctrineORM\Adapter
         autowire: true
-#        arguments: ['@task.repository']
 
-    task.delete_task:
-        class: Application\Task\DeleteTask
+    task.task_service:
+        class: Application\Task\TaskService
         autowire: true
 #        arguments: ['@task.repository']

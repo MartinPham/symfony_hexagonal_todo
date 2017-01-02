@@ -2,9 +2,7 @@
 
 namespace Infrastructure\Delivery\Frontend\TodoBundle\Controller;
 
-use Application\Task\CreateTask;
-use Application\Task\DeleteTask;
-use Application\Task\ListTask;
+use Application\Task\TaskService;
 use Infrastructure\Delivery\Frontend\TodoBundle\Entity\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +28,7 @@ class DefaultController extends Controller
     /**
      * Router
      *
-     * @var RouterInterface
+     * @var RouterIntace
      */
     protected $router;
 
@@ -42,49 +40,29 @@ class DefaultController extends Controller
     protected $formFactory;
 
     /**
-     * Create task usecase
+     * Task service
      *
-     * @var CreateTask
+     * @var TaskService
      */
-    protected $createTask;
-
-    /**
-     * List task usecase
-     *
-     * @var ListTask
-     */
-    protected $listTask;
-
-    /**
-     * Delete task usecase
-     *
-     * @var DeleteTask
-     */
-    protected $deleteTask;
+    protected $taskService;
 
     /**
      * DefaultController constructor
      *
      * @param RouterIntace         $router      Router
      * @param FormFactoryInterface $formFactory Form factory
-     * @param CreateTask           $createTask  Create task usecase
-     * @param ListTask             $listTask    List task usecase
-     * @param DeleteTask           $deleteTask  List task usecase
+     * @param TaskService          $taskService Task service
      *
      * @return void
      */
     public function __construct(
         RouterInterface $router,
         FormFactoryInterface $formFactory,
-        CreateTask $createTask,
-        ListTask $listTask,
-        DeleteTask $deleteTask
+        TaskService $taskService
     ) {
         $this->router = $router;
         $this->formFactory = $formFactory;
-        $this->createTask = $createTask;
-        $this->listTask = $listTask;
-        $this->deleteTask = $deleteTask;
+        $this->taskService = $taskService;
     }
 
     /**
@@ -106,13 +84,13 @@ class DefaultController extends Controller
         if ($taskTypeForm->isSubmitted() && $taskTypeForm->isValid()) {
             $data = $taskTypeForm->getData();
 
-            $this->createTask->createTask($data['name']);
+            $this->taskService->createTask($data['name']);
 
             return new RedirectResponse($this->router->generate('index'));
         }
 
         return [
-            'tasks' => $this->listTask->getAllTasks(),
+            'tasks' => $this->taskService->getAllTasks(),
             'task_form' => $taskTypeForm->createView()
         ];
     }
@@ -128,7 +106,7 @@ class DefaultController extends Controller
      */
     public function deleteAction(string $id)
     {
-        $this->deleteTask->deleteTask($id);
+        $this->taskService->deleteTask($id);
 
         return new RedirectResponse($this->router->generate('index'));
     }
