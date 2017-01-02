@@ -69,20 +69,20 @@ doctrine:
                         dir: "%kernel.root_dir%/../src/Infrastructure/Persistence/Adapter/DoctrineORM/"
                         is_bundle: false
 
-doctrine_mongodb:
-    connections:
-        default:
-            server: "mongodb://localhost:27017"
-            options: {}
-    default_database: sftodo
-    document_managers:
-        default:
-            mappings:
-                custom_mapping:
-                    type: yml
-                    prefix: Domain
-                    dir: "%kernel.root_dir%/../src/Infrastructure/Persistence/DoctrineODM/Task/"
-                    is_bundle: false
+#doctrine_mongodb:
+#    connections:
+#        default:
+#            server: "mongodb://localhost:27017"
+#            options: {}
+#    default_database: sftodo
+#    document_managers:
+#        default:
+#            mappings:
+#                custom_mapping:
+#                    type: yml
+#                    prefix: Domain
+#                    dir: "%kernel.root_dir%/../src/Infrastructure/Persistence/DoctrineODM/Task/"
+#                    is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:
