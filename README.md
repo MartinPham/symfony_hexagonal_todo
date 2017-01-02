@@ -2,6 +2,9 @@ todo
 ====
 
 My very first attempt to Hexagonal architect, with Symfony 3
+
+(For first implementation: https://gitlab.com/martinpham/symfony_hexagonal_todo/tree/v1)
+
 ```
 src
 ├── Application
