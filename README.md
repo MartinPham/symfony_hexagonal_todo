@@ -5,14 +5,13 @@ My very first attempt to Hexagonal architect, with Symfony 3
 ```
 src
 ├── Application
+│   ├── Repository
+│   │   ├── AdapterInterface.php
+│   │   └── TaskRepository.php
 │   └── Task
-│       ├── CreateTask.php
-│       ├── DeleteTask.php
-│       └── ListTask.php
+│       └── TaskService.php
 ├── Domain
 │   ├── Repository
-│   │   ├── Exception
-│   │   │   └── TaskNotFoundException.php
 │   │   └── TaskRepositoryInterface.php
 │   └── Task.php
 └── Infrastructure
@@ -38,19 +37,11 @@ src
     │           │           └── index.html.twig
     │           └── TodoBundle.php
     └── Persistence
-        ├── DoctrineODM
-        │   └── Task
-        │       ├── Task.mongodb.yml
-        │       └── TaskRepository.php
-        ├── DoctrineORM
-        │   └── Task
-        │       ├── Task.orm.yml
-        │       └── TaskRepository.php
-        ├── File
-        │   └── Task
-        │       ├── TaskRepository.php
-        │       └── tasks.txt
-        └── Memory
-            └── Task
-                └── TaskRepository.php
+        └── Adapter
+            ├── DoctrineORM
+            │   ├── Adapter.php
+            │   └── Task.orm.yml
+            └── Memory
+                └── Adapter.php
+
 ```
